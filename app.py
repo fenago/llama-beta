@@ -1,16 +1,17 @@
 import streamlit as st
-from llama_index import GPTSimpleVectorIndex
+from llama_index import GPTVectorStoreIndex  # Updated this line
 import os
 import config
+
 @st.cache_resource
 def load_indexes():
     """load the pipeline object for preprocessing and the ml model"""
 
     # load index files 
-    index_document = GPTSimpleVectorIndex.load_from_disk('index_txt.json')
-    index_video = GPTSimpleVectorIndex.load_from_disk('index_video.json')
-    index_wikepedia = GPTSimpleVectorIndex.load_from_disk('index_wikepedia.json')
-    return index_document, index_video, index_wikepedia
+    index_document = GPTVectorStoreIndex.load_from_disk('index_txt.json')  # Updated this line
+    index_video = GPTVectorStoreIndex.load_from_disk('index_video.json')  # Updated this line
+    index_wikipedia = GPTVectorStoreIndex.load_from_disk('index_wikipedia.json')  # Updated this line (and fixed a typo)
+    return index_document, index_video, index_wikipedia
 
 def main():
 
